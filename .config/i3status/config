@@ -1,0 +1,49 @@
+general {
+	output_format = "i3bar"
+	colors = true
+	color_good = "#b8bb26"
+	color_degraded = "#fabd2f"
+	color_bad = "#fb4934"
+	interval = 3
+}
+
+order += "battery 0"
+order += "volume master"
+order += "wireless _first_"
+order += "load"
+order += "cpu_temperature 1"
+order += "tztime local"
+
+
+battery 0 {
+	format = "%status %percentage (%remaining)"
+	last_full_capacity = true
+	separator_block_width = 50
+}
+
+volume master {
+	format = "V: %volume"
+	format_muted = "V: -"
+	separator_block_width = 50
+}
+
+wireless _first_ {
+	format_up = "W:%quality - %essid (%ip)"
+	format_down = "W: down"
+	separator_block_width = 50
+}
+
+load {
+	format = "L: %1min"
+	separator_block_width = 50
+}
+
+cpu_temperature 1 {
+	format = "T: %degrees °C"
+	path = "/sys/bus/platform/devices/coretemp.0/hwmon/hwmon0/temp1_input"
+	separator_block_width = 50
+}
+
+tztime local {
+	format = "%Y-%m-%d %H:%M"
+}
