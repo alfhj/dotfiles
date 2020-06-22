@@ -1,13 +1,14 @@
 HISTFILE=~/.histfile
 HISTSIZE=1000
-SAVEHIST=100000
+SAVEHIST=1000000
 export MOZ_ENABLE_WAYLAND=1
 
 bindkey -e
 zstyle :compinstall filename '/home/ahj/.zshrc'
 
-export PATH=$PATH:/home/ahj/bin
+export PATH=$PATH:~/bin:~/.npm-global/bin
 export LESS="$LESS -j.5"
+export EIX_LIMIT_COMPACT=0
 
 autoload -Uz compinit
 autoload -U promptinit
@@ -17,7 +18,7 @@ promptinit
 prompt gentoo
 
 setopt no_clobber
-setopt HIST_IGNORE_SPACE
+setopt hist_ignore_space
 
 alias crop='cut -c-$COLUMNS'
 alias ffmpeg='ffmpeg -hide_banner'
@@ -35,3 +36,10 @@ alias pmake='sudo vim /etc/portage/make.conf'
 alias puse='sudo vim /etc/portage/package.use/custom'
 function eb() { equery which --ebuild "$1" | less }
 function ebm() { equery which --include-masked --ebuild "$1" | less }
+function swap()         
+{
+    local TMPFILE=tmp.$$
+    mv "$1" $TMPFILE
+    mv "$2" "$1"
+    mv $TMPFILE "$2"
+}
