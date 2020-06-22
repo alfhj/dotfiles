@@ -1,0 +1,69 @@
+#!/usr/bin/env python
+import ffmpeg
+import math
+import os
+import sys
+
+#d1ratio = 1 / 2.4 # display 1 scaling ratio
+d1ratio = 1 / 3.07692307692307692306
+
+img = sys.argv[1]
+imginfo = ffmpeg.probe(img)["streams"][0]
+iw = imginfo["width"] # image width
+ih = imginfo["height"] # image height
+
+d1w = 3840 # display 1 width
+d1h = 2160 # display 1 height
+d2w = 1920 # display 2 width
+d2h = 1080 # display 2 height
+d3w = 1080 # display 3 width
+d3h = 1920 # display 3 height
+
+d3top = 40 # display 3 pixels over display 2
+
+d4 = (0, 0, d1w, d1h, d1w, d1h)
+d3 = (d3w, min(d3top, 0), d3w, d3h, d3w, d3h) # display 3 top left coordinate from top right cornes
+d2 = (d2w + d3w, max(d3top, 0), d2w, d2h, d2w, d2h)
+
+d1nw = d1w * d1ratio
+d1nh = d1h * d1ratio
+d1x = d3w + ((d1nw + d2w) / 2 if d1nw < d2w else d1nw) 
+d1y = d2[1] + d2h
+d1 = (d1x, d1y, d1nw, d1nh, d1w, d1h)
+
+tw = d3w + max(d2w, d1nw)
+th = max(d3h, d2h + d1nh)
+scalef = max(tw / iw, th / ih)
+toprx = (iw + tw / scalef)/2
+topry = (ih + th / scalef)/2
+
+for num, pane in enumerate([d1, d2, d3, d4], start=1):
+    x = round(toprx - pane[0] / scalef)
+    y = round(ih - (topry - pane[1] / scalef))
+    w = round(pane[2] / scalef)
+    h = round(pane[3] / scalef)
+    if pane[2] == d1w and pane[3] == d1h:
+        x = 0
+        y = 0
+        w = iw
+        h = ih
+    
+    ofile = os.path.expanduser(f"~/pic/Bing/latest/{num}.png")
+    oblurfile = os.path.expanduser(f"~/pic/Bing/latest/{num}_blur.png")
+    sigma = 0.02 * math.sqrt(pane[4]**2 + pane[5]**2)
+
+    (
+        ffmpeg
+        .input(img)
+        .crop(x, y, w, h)
+        .filter("scale", pane[4], pane[5], flags="sinc") 
+        .output(ofile)
+        .run(overwrite_output=True)
+    )
+    (
+        ffmpeg
+        .input(ofile)
+        .filter("gblur", sigma=sigma, steps=2)
+        .output(oblurfile)
+        .run(overwrite_output=True)
+    )

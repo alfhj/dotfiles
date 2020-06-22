@@ -1,0 +1,23 @@
+#!/bin/bash
+
+stats=/tmp/netstats
+window=5
+
+current=$(ifconfig wlp59s0 | sed -ne 's/^.*RX.*bytes \([^ ]*\).*$/\1/p')
+currenttime=$(date +%s%3N)
+mintime=$((currenttime - window * 1000))
+echo "$currenttime $current" >> $stats
+
+deltatime=1
+prevpkts=$(tail -n 1 $stats | cut -d' ' -f 2)
+while read time pkts; do
+	if [ $time -lt $mintime ]; then
+		break
+	else
+		deltatime
+		prevpkts=$pkts
+	fi
+done < <(tac $stats)
+echo $pkts
+
+echo "$(dc -e "2 k $current $pkts - $currenttime $time - 1000 / / 1024 2 ^ / p") MBps"

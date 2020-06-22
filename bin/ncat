@@ -1,0 +1,9 @@
+#!/bin/bash
+
+output=""
+for file in $*; do
+	output+="${file}:\n\n"
+	output+="$(cat $file)\n\n"
+	output+="----------------------------------------------\n"
+done
+echo -ne "$output"

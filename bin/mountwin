@@ -1,0 +1,4 @@
+#!/bin/bash
+
+sudo mount /mnt/dislocker
+sudo mount /mnt/win

@@ -1,0 +1,20 @@
+#!/bin/bash
+
+dotfiledir=~/src/dotfiles
+dotfile="$1"
+dotfilepath="$(realpath --relative-to="$HOME" "$dotfile")"
+destination="${dotfiledir}/$dotfilepath"
+
+if [ ! -f "$dotfile" ]; then
+	echo "Can't find dotfile."
+	exit 1
+fi
+
+if [ -h "$dotfile" -o -f "$destination" ]; then
+	echo "Dotfile already added"
+	exit 1
+fi
+
+mkdir -p "${dotfiledir}/$(dirname "$dotfilepath")"
+mv "$dotfile" "$destination"
+ln -s "$destination" "$dotfile"

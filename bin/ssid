@@ -1,0 +1,1 @@
+iw wlp59s0 info | sed -ne 's/^.*ssid \(.*\)$/\1/p'

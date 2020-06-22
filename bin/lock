@@ -1,0 +1,14 @@
+#!/bin/bash
+
+imgbase=~/pic/Bing/latest
+
+monitors="$(swaymsg -t get_outputs | jq -r '.[] | [.name, .serial] | @csv')"
+mon1=eDP-1
+mon2=$(sed -ne '/6R0Z1V2/ s/^"\([^"]*\).*$/\1/p' <<< "$monitors")
+mon3=$(sed -ne '/6ZM02V2/ s/^"\([^"]*\).*$/\1/p' <<< "$monitors")
+
+mon1l="-i ${mon1}:${imgbase}/1_blur.png"
+[ -n "$mon2" ] && mon2l="-i ${mon2}:${imgbase}/2_blur.png"
+[ -n "$mon3" ] && mon3l="-i ${mon3}:${imgbase}/3_blur.png"
+
+swaylock -e -f $mon1l $mon2l $mon3l

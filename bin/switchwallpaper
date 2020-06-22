@@ -1,0 +1,11 @@
+#!/bin/bash
+
+base=/home/ahj/pic/Bing/latest
+outputs="$(swaymsg -t get_outputs | jq -r '.[] .name')"
+if [ "$outputs" = "eDP-1" ]; then
+		cp ${base}/4.png ${base}/5.png
+		cp ${base}/4_blur.png ${base}/5_blur.png
+else
+		cp ${base}/1.png ${base}/5.png
+		cp ${base}/1_blur.png ${base}/5_blur.png
+fi

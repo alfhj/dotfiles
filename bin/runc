@@ -1,0 +1,10 @@
+#!/bin/bash
+
+cfile=~/cmds
+lines="$(<$cfile)"
+numlines=$(wc -l <<< "$lines")
+numchars=${#numlines}
+numbers="$(seq 1 $numlines | tr ' ' '\n')"
+
+
+paste <(echo "$numbers") "$cfile"

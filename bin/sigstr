@@ -1,0 +1,7 @@
+#!/bin/bash
+
+bars=$((($(gawk 'NR==3 {print substr($3, 0, 2)}' /proc/net/wireless) + 6) * 10 / 70))
+bigos=$(printf %$(($bars / 2))s | tr ' ' 'O')
+smallos=$(printf %$(($bars % 2))s | tr ' ' 'o')
+dots=$(printf %$(((10 - $bars) / 2))s | tr ' ' '.')
+echo "[${bigos}${smallos}${dots}]"

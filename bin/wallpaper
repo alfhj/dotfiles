@@ -1,0 +1,23 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+if [ ! -f "$*" ]; then
+	url="https://www.bing.com/HPImageArchive.aspx?idx=0&n=1&cc=no"
+	base="$(curl -Ls "$url" | sed -ne 's/.*<urlBase>\(.*\)<\/urlBase>.*/\1/p')"
+	imgurl="https://www.bing.com${base}_UHD.jpg"
+	imgname="$(date +%y%m%d)_$(echo "$imgurl" | cut -c 32-)"
+	filename="${HOME}/pic/Bing/$imgname"
+	curl -L -o "$filename" "$imgurl"
+else
+	filename="$*"
+fi
+
+splitwallpaper "$filename"
+switchwallpaper
+swaymsg -s /run/user/1000/sway* reload
+
+#finalw=3840
+#finalh=2160
+#ffmpeg -y -i "$filename" -vf "crop=min(iw\,round(ih*${finalw}/${finalh})):min(ih\,round(iw*${finalh}/${finalw})),scale=${finalw}:${finalh}" "$filenamepng"
