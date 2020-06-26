@@ -1,0 +1,45 @@
+{
+    "[javascript]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+        }
+    },    
+    "[css]": {    
+        "editor.formatOnSave": true    
+    },    
+    "[javascriptreact]": {    
+        "editor.formatOnSave": true
+    },
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "workbench.colorCustomizations": {
+        "editorRuler.foreground": "#3d3d3d"
+    },
+    "breadcrumbs.enabled": true,
+    "csv-preview.separator": ";",
+    //"editor.autoClosingBrackets": "never",
+    "editor.fontFamily": "Hack, Consolas, 'Courier New', monospace",
+    "editor.rulers": [80],
+    "editor.tabSize": 4,
+    "editor.wordWrap": "on",
+    "extensions.ignoreRecommendations": true,
+    "prettier.printWidth": 120,
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 2,
+    "terminal.integrated.fontSize": 11,
+    "update.enableWindowsBackgroundUpdates": false,
+    "update.mode": "none",
+    "update.showReleaseNotes": false,
+    "window.menuBarVisibility": "default",
+    "window.titleBarStyle": "native",
+    "window.zoomLevel": 0,
+    "workbench.colorTheme": "Default Light+",
+    "workbench.statusBar.visible": true,
+    "workbench.tree.indent": 20,
+}
