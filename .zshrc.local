@@ -1,8 +1,8 @@
 PATH=$PATH:~/bin
 export MOZ_ENABLE_WAYLAND=1
 
-#export LESS="$LESS -j.5"
-export LESS="FRX -j.5"
+#export LESS="$LESS -j.5 -i"
+export LESS="FRX -j.5 -i"
 
 alias crop='cut -c-$COLUMNS'
 alias ffmpeg='ffmpeg -hide_banner'
