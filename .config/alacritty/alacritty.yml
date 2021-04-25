@@ -18,9 +18,6 @@ window:
 scrolling:
   history: 10000
   multiplier: 20
-  auto_scroll: false
-
-tabspaces: 8
 
 font:
   normal:

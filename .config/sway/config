@@ -1,40 +1,17 @@
-# Sway config
-
-#exec switchwallpaper
-
-set $lapscr "Sharp Corporation 0x148D 0x00000000"
-set $leftscr "Dell Inc. DELL P2419H 6R0Z1V2"
-set $rightscr "Dell Inc. DELL P2419H 6ZM02V2"
-
-output $leftscr {
-	scale 1
-	transform 270
-	position 0 0
-	bg ~/pic/Bing/latest/2.png fill
-}
-
-output $lapscr {
+output "*" {
 	scale 2.30769230769230769230
 	#scale 2
 	scale_filter linear
-	position 1080 984
 	bg ~/pic/Bing/latest/5.png fill
 }
 
-output $rightscr {
-	scale 1
-	transform 90
-	position 2744 0
-	bg ~/pic/Bing/latest/3.png fill
-}
-
-#input "1:1:AT_Translated_Set_2_keyboard" {
 input "*" {
 	xkb_layout "no"
 	xkb_options kpdl:dot
 	repeat_delay 250
 	accel_profile flat
 	pointer_accel 1.0
+  dwt disabled
 }
 
 input "2:7:SynPS/2_Synaptics_TouchPad" {
