@@ -7,7 +7,7 @@ bindkey -e
 zstyle :compinstall filename '/home/ahj/.zshrc'
 
 export PATH=$PATH:~/bin:~/.npm-global/bin
-export LESS="$LESS -j.5"
+export LESS="FRX -j.5 -i"
 export EIX_LIMIT_COMPACT=0
 
 autoload -Uz compinit

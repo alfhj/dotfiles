@@ -42,4 +42,6 @@
     "workbench.colorTheme": "Default Light+",
     "workbench.statusBar.visible": true,
     "workbench.tree.indent": 20,
+    "files.hotExit": "off",
+    "window.restoreWindows": "none",
 }

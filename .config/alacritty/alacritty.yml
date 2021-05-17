@@ -22,7 +22,7 @@ scrolling:
 font:
   normal:
     family: Hack
-    family: Noto Sans Mono
+    #family: Noto Sans Mono
 
   size: 11.0
 
@@ -63,7 +63,7 @@ colors:
     cyan:    '0x8ec07c'
     white:   '0xebdbb2'
 
-visual_bell:
+bell:
   animation: Linear
   duration: 0
   color: '0x000000'
