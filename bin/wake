@@ -1,0 +1,11 @@
+wol $(sed -n -e "s/\(.*\) - $*/\1/p" <<EOL 
+74:44:01:2d:d8:80 - en_glm
+A0:21:B7:C1:83:94 - nas-C1-83-94
+14:DA:E9:2B:32:41 - arch1 
+00:11:09:B4:B0:EA - FHSS
+00:13:20:2D:51:BE - Marsh
+E0:D5:5E:A5:A9:4B - takara
+A8:A1:59:47:1A:8B - yamato
+00:2F:5C:68:0A:7E - ryuzaki
+EOL
+)
