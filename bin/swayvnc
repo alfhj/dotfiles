@@ -1,0 +1,7 @@
+export WLR_BACKENDS=headless
+export WLR_LIBINPUT_NO_DEVICES=1
+sway &
+sleep 2
+
+export WAYLAND_DISPLAY=wayland-1
+wayvnc 0.0.0.0

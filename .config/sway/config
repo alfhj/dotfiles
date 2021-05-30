@@ -1,29 +1,21 @@
-output "*" {
-	scale 2.30769230769230769230
-	#scale 2
+output * {
+	scale 2
 	scale_filter linear
-	bg ~/pic/Bing/latest/5.png fill
+	#bg ~/pic/Bing/latest/5.png fill
 }
 
-input "*" {
-	xkb_layout "no"
+output HEADLESS-1 {
+	resolution 1920x1080
+}
+
+input * {
+	#xkb_layout "no"
 	xkb_options kpdl:dot
 	repeat_delay 250
 	accel_profile flat
 	pointer_accel 1.0
-  dwt disabled
+	#dwt disabled
 }
-
-input "2:7:SynPS/2_Synaptics_TouchPad" {
-	accel_profile adaptive
-	pointer_accel 0.6
-	click_method clickfinger 
-	natural_scroll enabled
-	scroll_factor 0.25
-	tap enabled
-}
-
-#seat seat0 xcursor_theme "DMZ (Black)" 16
 
 #xwayland disable
 default_border pixel 3
@@ -33,35 +25,33 @@ gaps outer 0
 gaps inner 15
 focus_follows_mouse no
 mouse_warping none
-#workspace 1 output $leftscr
-#workspace 2 output $lapscr
-#workspace 3 output $rightscr
 
-#						 border   background   text   indicator child_border
+#				border   background   text   indicator child_border
 
 #client.focused			"#4c7899" "#285577" "#ffffff" "#2e9ef4" "#285577"
-#client.focused_inactive "#333333" "#5f676a" "#ffffff" "#484e50" "#5f676a"
+#client.focused_inactive 	"#333333" "#5f676a" "#ffffff" "#484e50" "#5f676a"
 #client.unfocused		"#333333" "#222222" "#888888" "#292d2e" "#222222"
 #client.urgent			"#2f343a" "#900000" "#ffffff" "#900000" "#900000"
 
 client.focused			"#4c7899" "#285577" "#ffffff" "#2e9ef4" "#285577"
-client.focused_inactive "#00000000" "#000000" "#ffffff" "#00000000" "#00000000"
+client.focused_inactive		"#00000000" "#000000" "#ffffff" "#00000000" "#00000000"
 client.unfocused		"#00000000" "#000000" "#888888" "#00000000" "#00000000"
 client.urgent			"#2f343a" "#900000" "#ffffff" "#900000" "#900000"
 
 exec swayidle -w \
-		timeout 300 'lock' \
-		timeout 300 'swaymsg "output * dpms off"' \
-			resume 'swaymsg "output * dpms on"' \
-		before-sleep 'lock'
+	timeout 300 'lock' \
+	timeout 300 'swaymsg "output * dpms off"' \
+	resume 'swaymsg "output * dpms on"' \
+	before-sleep 'lock'
 
 set $menu dmenu_path | \
-			bemenu -i -p "" --fn "Hack 10" --hf "#4c7899" | \
-			xargs swaymsg exec --
+	bemenu -i -p "" --fn "Hack 10" --hf "#4c7899" | \
+	xargs swaymsg exec --
 
 set $term alacritty
 
-set $mod Mod4
+#set $mod Mod4
+set $mod Mod1
 
 bindsym XF86AudioRaiseVolume exec amixer -M sset Master 1%+
 bindsym XF86AudioLowerVolume exec amixer -M sset Master 1%-
